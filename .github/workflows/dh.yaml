@@ -1,0 +1,14 @@
+name: Uploading to dockerhub
+on:
+    push
+jobs:
+    todh:
+        runs-on: [self-hosted, linux, x64, docker]
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v7
+            -   name: Upload
+                run: |
+                    docker login --username tybsct --password ${{secrets.DH_PAT}}
+                    docker build . -t tybsct/healthcheck:latest
+                    docker push tybsct/healthcheck:latest    
