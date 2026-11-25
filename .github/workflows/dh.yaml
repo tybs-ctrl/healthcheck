@@ -10,5 +10,5 @@ jobs:
             -   name: Upload
                 run: |
                     docker login --username tybsct --password ${{secrets.DH_PAT}}
-                    docker build . -t tybsct/healthcheck:latest
-                    docker push tybsct/healthcheck:latest    
+                    docker build . -t tybsct/healthcheck:0.0.${{ github.run_number }}
+                    docker push tybsct/healthcheck:0.0.${{ github.run_number }}    
